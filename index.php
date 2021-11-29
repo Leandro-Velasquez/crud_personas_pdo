@@ -50,9 +50,13 @@
                             <a href="#" class="table__button">Eliminar</a>
                         </td> 
                     </tr>
+                    <?php
+                        $persona->mostrarDatos();
+                    ?>
                 </tbody>
             </table>
         </section>
     </div>
+    
 </body>
 </html>

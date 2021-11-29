@@ -3,6 +3,11 @@
     margin: 0px;
     font-family: arial;
 }
+.div-container-flex {
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+}
 .registro {
     width: 300px;
     background-color: #F0E9D2;
@@ -29,7 +34,8 @@
     outline: none;
     border: none;
     border-radius: 2px;
-    height: 25px;
+    height: 30px;
+    width: 80%;
 }
 .formulario__button {
     margin-top: 20px;
@@ -44,4 +50,39 @@
 .formulario__button:hover{
     background-color: #456861;
     transition: .4s;
+}
+
+/*ESTILOS TABLA DATOS*/
+.table{
+    background-color: #faf4df;
+    width: 750px;
+}
+.table__caption {
+    text-transform: uppercase;
+    background-color: #E6DDC4;
+    font-weight: 600;
+}
+.table__thead{
+    background-color: #E6DDC4;
+}
+.table__tbody {
+    background-color: #F0E9D2;
+}
+.table__container-buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+.table__button{
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #678983;
+    border: 1px solid #395853;
+    color: black;
+}
+.table__button:hover {
+    background-color: #456861;
+    transition: .4s;
+}
+.table__button--modified {
+    margin-right: 8px;
 }

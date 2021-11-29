@@ -1,3 +1,8 @@
+<?php
+    require_once "Clases/persona.php";
+
+    $persona = new Persona("localhost:3307", "personas_crud_pdo", "root", "");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

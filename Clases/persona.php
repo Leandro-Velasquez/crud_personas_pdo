@@ -31,6 +31,20 @@
 
             $sql->execute();
         }
+        /*
+        public function editarDatosPersona($nombre, $apellido, $telefono, $email) {
+            $sql = $this->pdo->prepare("UPDATE personas SET ... WHERE id=:id");
+        }
+        */
+        public function getDatosPersona($id) {
+            $sql = $this->pdo->prepare("SELECT * FROM personas WHERE id=:id");
+            $sql->bindParam(':id', $id);
+            $sql->execute();
+
+            $respuesta = $sql->fetch(PDO::FETCH_ASSOC);
+
+            return $respuesta;
+        }
 
         public function mostrarDatos() {
             $respuesta = $this->pdo->query("SELECT * FROM personas");
@@ -57,10 +71,7 @@
                     ?>
                     <td class="table__container-buttons">
                         <form method="POST">
-                            <?php
-                                
-                            ?>
-                            <button class="table__button">Editar</button>
+                            <button class="table__button" name="botonEditar" value=<?php echo $id; ?>>Editar</button>
                             <button class="table__button" name="id" value=<?php echo $id; ?>>Eliminar</button>
                         </form>
                     </td>

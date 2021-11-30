@@ -7,6 +7,9 @@
         $persona->eliminarPersonaRegistro($_POST['id']);
         header("location: index.php");
     }
+    else if(isset($_POST['botonEditar'])){
+
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,10 +60,9 @@
             </table>
         </section>
     </div>
+    <?php
+        $persona->getDatosPersona("1");
+    ?>
+    <script src="scripts.js"></script>
 </body>
-<script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-</script>
 </html>

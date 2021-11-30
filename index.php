@@ -15,7 +15,12 @@
 <body>
     <div class="div-container-flex">
         <section class="registro">
-            <form class="formulario" action="">
+            <form class="formulario" action="index.php" method="POST">
+                <?php
+                    if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['telefono']) && isset($_POST['email'])){
+                        $persona->registrarPersona($_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email']);
+                    }
+                ?>
                 <h2 class="formulario__h2">registrar persona</h2>
                 <div class="formulario__div">
                     <label class="formulario__label" for="nombre">Nombre:</label>
@@ -40,16 +45,6 @@
                     <th colspan="2">Email</th>
                 </thead>
                 <tbody class="table__tbody">
-                    <tr>
-                        <td>asdasd</td>
-                        <td>sssssssss</td>
-                        <td>00000000</td>
-                        <td>asdasdas@gmail.com</td>
-                        <td class="table__container-buttons">
-                            <a href="#" class="table__button table__button--modified">Editar</a>
-                            <a href="#" class="table__button">Eliminar</a>
-                        </td> 
-                    </tr>
                     <?php
                         $persona->mostrarDatos();
                     ?>
@@ -57,6 +52,5 @@
             </table>
         </section>
     </div>
-    
 </body>
 </html>

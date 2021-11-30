@@ -13,6 +13,17 @@
             }
         }
 
+        public function registrarPersona($nombre, $apellido, $telefono, $email) {
+            $sql = $this->pdo->prepare('INSERT INTO personas (nombre, apellido, telefono, email) VALUES (:nombre, :apellido, :telefono, :email)');
+                
+            $sql->bindParam(':nombre', $nombre);
+            $sql->bindParam(':apellido', $apellido);
+            $sql->bindParam(':telefono', $telefono);
+            $sql->bindParam(':email', $email);
+
+            $sql->execute();
+        }
+
         public function mostrarDatos() {
             $respuesta = $this->pdo->query("SELECT * FROM personas");
             $rows = $respuesta->fetchAll(PDO::FETCH_ASSOC);
@@ -24,9 +35,14 @@
                             echo "<td>" . $value . "</td>";
                         }
                     }
+                    echo '<td class="table__container-buttons">';
+                    echo '<a href="" class="table__button table__button--modified">Editar</a>';
+                    echo '<a href="" class="table__button">Eliminar</a>';
+                    echo '</td>';
                     echo "</tr>";
                 }
             }
         }
+
     }
 ?>

@@ -2,6 +2,11 @@
     require_once "Clases/persona.php";
 
     $persona = new Persona("localhost:3307", "personas_crud_pdo", "root", "");
+
+    if(isset($_POST['id'])){
+        $persona->eliminarPersonaRegistro($_POST['id']);
+        header("location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +20,7 @@
 <body>
     <div class="div-container-flex">
         <section class="registro">
-            <form class="formulario" action="index.php" method="POST">
+            <form class="formulario" method="POST">
                 <?php
                     if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['telefono']) && isset($_POST['email'])){
                         $persona->registrarPersona($_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email']);
@@ -53,4 +58,9 @@
         </section>
     </div>
 </body>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 </html>

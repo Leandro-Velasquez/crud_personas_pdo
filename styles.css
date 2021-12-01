@@ -51,10 +51,24 @@
     background-color: #456861;
     transition: .4s;
 }
-.mensaje-error{
+.lista-errores{
     background-color: #C85C5C;
     color: white;
-    text-align: center;
+    list-style: none;
+}
+.lista-errores__div{
+    width: 80%;
+    margin: auto;
+}
+.lista-errores__li{
+    margin: 5px 0px;
+}
+.lista-errores__li--modified{
+    margin-top: 0px;
+}
+.fa-exclamation-triangle{
+    color: red;
+    margin-right: 12px;
 }
 
 

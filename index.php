@@ -16,7 +16,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro personas</title>
-    <link rel="stylesheet" href="styles.css?1">
+    <link rel="stylesheet" href="styles.css?2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 </head>
 <body>
     <div class="div-container-flex">
@@ -47,7 +48,14 @@
                         }
                         else{
                             ?>
-                            <p class="mensaje-error">No deje campos vacios.</p>
+                            <ul class="lista-errores">
+                                <div class="lista-errores__div">
+                                    <?php echo empty($nombre)?'<li class="lista-errores__li lista-errores__li--modified"><i class="fas fa-exclamation-triangle"></i>Ingrese un nombre</li>':null;?>
+                                    <?php echo empty($apellido)?'<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>Ingrese un apellido</li>':null;?>
+                                    <?php echo empty($telefono)?'<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>Ingrese un telefono</li>':null;?>
+                                    <?php echo empty($email)?'<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>Ingrese un email</li>':null;?>
+                                </div>
+                            </ul>
                             <?php
                         }
                     }

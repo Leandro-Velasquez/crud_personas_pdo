@@ -4,6 +4,7 @@
 
         public function __construct($host, $dbname, $user, $password)
         {
+            $this->actualizarDatos = false;
             try{
                 $this->pdo = new PDO("mysql:host=" . $host . ";dbname=" . $dbname . ";" , $user, $password);
             }catch(PDOException $e){
@@ -31,11 +32,19 @@
 
             $sql->execute();
         }
-        /*
-        public function editarDatosPersona($nombre, $apellido, $telefono, $email) {
-            $sql = $this->pdo->prepare("UPDATE personas SET ... WHERE id=:id");
+        
+        public function editarDatosPersona($nombre, $apellido, $telefono, $email, $id) {
+            $sql = $this->pdo->prepare("UPDATE personas SET nombre=:n, apellido=:a, telefono=:t, email=:e WHERE id=:id");
+
+            $sql->bindParam(":n", $nombre);
+            $sql->bindParam(":a", $apellido);
+            $sql->bindParam(":t", $telefono);
+            $sql->bindParam(":e", $email);
+            $sql->bindParam(":id", $id);
+
+            $sql->execute();
         }
-        */
+        
         public function getDatosPersona($id) {
             $sql = $this->pdo->prepare("SELECT * FROM personas WHERE id=:id");
             $sql->bindParam(':id', $id);
@@ -61,13 +70,6 @@
                             echo "<td>" . $value . "</td>";
                         }
                     }
-                    /*
-                    echo '<td class="table__container-buttons">';
-                    echo '<a href="" class="table__button table__button--modified">Editar</a>';
-                    echo '<a href="" class="table__button">Eliminar</a>';
-                    echo '</td>';
-                    echo "</tr>";
-                    */
                     ?>
                     <td class="table__container-buttons">
                         <form method="POST">

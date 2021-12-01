@@ -7,9 +7,7 @@
         $persona->eliminarPersonaRegistro($_POST['id']);
         header("location: index.php");
     }
-    else if(isset($_POST['botonEditar'])){
-
-    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,21 +23,37 @@
         <section class="registro">
             <form class="formulario" method="POST">
                 <?php
-                    if(isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['telefono']) && isset($_POST['email'])){
-                        $persona->registrarPersona($_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email']);
+                    $titulo_formulario = isset($_POST["botonEditar"])?"actualizar datos":"registrar persona";
+                    $texto_boton = isset($_POST["botonEditar"])?"actualizar":"registrar";
+                    $datos =isset($_POST["botonEditar"])?$persona->getDatosPersona($_POST['botonEditar']):null;
+
+                    //REGISTRAR Y EDITAR DATOS PERSONA
+                    if(isset($_POST["nombre"])){
+                        if(isset($_POST["actualizar"])){
+                            //ACTUALIZAR
+                            $persona->editarDatosPersona($_POST["nombre"], $_POST["apellido"], $_POST["telefono"], $_POST["email"], $_POST["actualizar"]);
+                        }
+                        else{
+                            //REGISTRAR
+                            $persona->registrarPersona($_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email']);
+                        }
                     }
+
                 ?>
-                <h2 class="formulario__h2">registrar persona</h2>
+                <h2 class="formulario__h2"><?php echo $titulo_formulario; ?></h2>
                 <div class="formulario__div">
                     <label class="formulario__label" for="nombre">Nombre:</label>
-                    <input class="formulario__input" id="nombre" type="text" name="nombre">
+                    <input class="formulario__input" id="nombre" type="text" name="nombre" value=<?php if($datos!="")echo $datos['nombre'];?>>
                     <label class="formulario__label" for="apellido">Apellido:</label>
-                    <input class="formulario__input" id="apellido" type="text" name="apellido">
+                    <input class="formulario__input" id="apellido" type="text" name="apellido" value=<?php if($datos!="")echo $datos['apellido'];?>>
                     <label class="formulario__label" for="telefono">Telefono:</label>
-                    <input class="formulario__input" id="telefono" type="text" name="telefono">
+                    <input class="formulario__input" id="telefono" type="text" name="telefono" value=<?php if($datos!="")echo $datos['telefono'];?>>
                     <label class="formulario__label" for="email">Email:</label>
-                    <input class="formulario__input" id="email" type="text" name="email">
-                    <input class="formulario__button" type="submit" value="registrar">
+                    <input class="formulario__input" id="email" type="text" name="email" value=<?php if($datos!="")echo $datos['email'];?>>
+
+                    <button class="formulario__button" name=<?php echo $texto_boton; ?> value=<?php echo isset($_POST["botonEditar"])? $_POST["botonEditar"]: "valor_boton_editar_es_registrar"; ?>>
+                        <?php echo $texto_boton; ?>
+                    </button>
                 </div>
             </form>
         </section>
@@ -60,9 +74,6 @@
             </table>
         </section>
     </div>
-    <?php
-        $persona->getDatosPersona("1");
-    ?>
     <script src="scripts.js"></script>
 </body>
 </html>

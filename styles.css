@@ -51,6 +51,12 @@
     background-color: #456861;
     transition: .4s;
 }
+.mensaje-error{
+    background-color: #C85C5C;
+    color: white;
+    text-align: center;
+}
+
 
 /*ESTILOS TABLA DATOS*/
 .table{
@@ -86,3 +92,4 @@
 .table__button--modified {
     margin-right: 8px;
 }
+

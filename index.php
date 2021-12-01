@@ -10,13 +10,13 @@
     
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro personas</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?1">
 </head>
 <body>
     <div class="div-container-flex">
@@ -29,13 +29,26 @@
 
                     //REGISTRAR Y EDITAR DATOS PERSONA
                     if(isset($_POST["nombre"])){
-                        if(isset($_POST["actualizar"])){
+                        $nombre = $_POST["nombre"];
+                        $apellido = $_POST["apellido"];
+                        $telefono = $_POST["telefono"];
+                        $email = $_POST["email"];
+
+                        //VERIFICAR QUE LOS DATOS NO ESTEN VACIOS
+                        if(!empty($nombre) && !empty($apellido) && !empty($telefono) && !empty($telefono) && !empty($email)){
                             //ACTUALIZAR
-                            $persona->editarDatosPersona($_POST["nombre"], $_POST["apellido"], $_POST["telefono"], $_POST["email"], $_POST["actualizar"]);
+                            if(isset($_POST["actualizar"])){
+                                $persona->editarDatosPersona($_POST["nombre"], $_POST["apellido"], $_POST["telefono"], $_POST["email"], $_POST["actualizar"]);
+                            }
+                            else{
+                                //REGISTRAR
+                                $persona->registrarPersona($_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email']);
+                            }
                         }
                         else{
-                            //REGISTRAR
-                            $persona->registrarPersona($_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email']);
+                            ?>
+                            <p class="mensaje-error">No deje campos vacios.</p>
+                            <?php
                         }
                     }
 

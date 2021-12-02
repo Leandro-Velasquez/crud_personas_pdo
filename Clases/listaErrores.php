@@ -1,6 +1,10 @@
 <?php
 
-    class listaErrores{
+    class listaErrores extends Persona{
+        public function __construct()
+        {
+            
+        }
 
         //ESTAS FUNCIONES RETORNAN UN VALOR BOOLEANO
         public function verificarNombreReturnBool($nombre){

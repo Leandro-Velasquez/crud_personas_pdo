@@ -48,6 +48,10 @@
                             //ACTUALIZAR
                             if(isset($_POST["actualizar"])){
                                 $persona->editarDatosPersona($_POST["nombre"], $_POST["apellido"], $_POST["telefono"], $_POST["email"], $_POST["actualizar"]);
+                                $nombre = null;
+                                $apellido = null;
+                                $telefono = null;
+                                $email = null;
                             }
                             else{
                                 //REGISTRAR

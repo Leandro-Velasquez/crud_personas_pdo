@@ -55,6 +55,13 @@
             return $respuesta;
         }
 
+        public function getArrayEmailsDB() {
+            $sql = $this->pdo->prepare("SELECT email FROM personas");
+            $sql->execute();
+            $arrayEmails = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $arrayEmails;
+        }
+
         public function mostrarDatos() {
             $respuesta = $this->pdo->query("SELECT * FROM personas");
             $rows = $respuesta->fetchAll(PDO::FETCH_ASSOC);

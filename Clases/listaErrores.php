@@ -1,6 +1,6 @@
 <?php
 
-    class listaErrores {
+    class listaErrores{
 
         //ESTAS FUNCIONES RETORNAN UN VALOR BOOLEANO
         public function verificarNombreReturnBool($nombre){

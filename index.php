@@ -28,6 +28,11 @@
                     $texto_boton = isset($_POST["botonEditar"])?"actualizar":"registrar";
                     $datos =isset($_POST["botonEditar"])?$persona->getDatosPersona($_POST['botonEditar']):null;
 
+                    $nombre = "";
+                    $apellido = "";
+                    $telefono = "";
+                    $email = "";
+
                     //REGISTRAR Y EDITAR DATOS PERSONA
                     if(isset($_POST["nombre"])){
                         $nombre = $_POST["nombre"];
@@ -44,6 +49,10 @@
                             else{
                                 //REGISTRAR
                                 $persona->registrarPersona($_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email']);
+                                $nombre = null;
+                                $apellido = null;
+                                $telefono = null;
+                                $email = null;
                             }
                         }
                         else{
@@ -64,13 +73,13 @@
                 <h2 class="formulario__h2"><?php echo $titulo_formulario; ?></h2>
                 <div class="formulario__div">
                     <label class="formulario__label" for="nombre">Nombre:</label>
-                    <input class="formulario__input" id="nombre" type="text" name="nombre" value=<?php if($datos!="")echo $datos['nombre'];?>>
+                    <input class="formulario__input" id="nombre" type="text" name="nombre" value=<?php if($datos!="")echo $datos['nombre'];else echo $nombre;?>>
                     <label class="formulario__label" for="apellido">Apellido:</label>
-                    <input class="formulario__input" id="apellido" type="text" name="apellido" value=<?php if($datos!="")echo $datos['apellido'];?>>
+                    <input class="formulario__input" id="apellido" type="text" name="apellido" value=<?php if($datos!="")echo $datos['apellido']; else echo $apellido;?>>
                     <label class="formulario__label" for="telefono">Telefono:</label>
-                    <input class="formulario__input" id="telefono" type="text" name="telefono" value=<?php if($datos!="")echo $datos['telefono'];?>>
+                    <input class="formulario__input" id="telefono" type="text" name="telefono" value=<?php if($datos!="")echo $datos['telefono']; else echo $telefono;?>>
                     <label class="formulario__label" for="email">Email:</label>
-                    <input class="formulario__input" id="email" type="text" name="email" value=<?php if($datos!="")echo $datos['email'];?>>
+                    <input class="formulario__input" id="email" type="text" name="email" value=<?php if($datos!="")echo $datos['email']; else echo $email;?>>
 
                     <button class="formulario__button" name=<?php echo $texto_boton; ?> value=<?php echo isset($_POST["botonEditar"])? $_POST["botonEditar"]: "valor_boton_editar_es_registrar"; ?>>
                         <?php echo $texto_boton; ?>

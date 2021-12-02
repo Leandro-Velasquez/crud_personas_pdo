@@ -1,5 +1,6 @@
 <?php
     require_once "Clases/persona.php";
+    require_once "Clases/listaErrores.php";
 
     $persona = new Persona("localhost:3307", "personas_crud_pdo", "root", "");
 
@@ -40,8 +41,10 @@
                         $telefono = $_POST["telefono"];
                         $email = $_POST["email"];
 
+                        $listaErrores = new listaErrores();
+
                         //VERIFICAR QUE LOS DATOS NO ESTEN VACIOS
-                        if(!empty($nombre) && !empty($apellido) && !empty($telefono) && !empty($telefono) && !empty($email)){
+                        if($listaErrores->verificarNombreReturnBool($nombre) && $listaErrores->verificarNombreReturnBool($apellido) && $listaErrores->verificarTelefonoReturnBool($telefono) && $listaErrores->verificarEmailReturnBool($email)){
                             //ACTUALIZAR
                             if(isset($_POST["actualizar"])){
                                 $persona->editarDatosPersona($_POST["nombre"], $_POST["apellido"], $_POST["telefono"], $_POST["email"], $_POST["actualizar"]);
@@ -59,10 +62,12 @@
                             ?>
                             <ul class="lista-errores">
                                 <div class="lista-errores__div">
-                                    <?php echo empty($nombre)?'<li class="lista-errores__li lista-errores__li--modified"><i class="fas fa-exclamation-triangle"></i>Ingrese un nombre</li>':null;?>
-                                    <?php echo empty($apellido)?'<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>Ingrese un apellido</li>':null;?>
-                                    <?php echo empty($telefono)?'<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>Ingrese un telefono</li>':null;?>
-                                    <?php echo empty($email)?'<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>Ingrese un email</li>':null;?>
+                                    <?php 
+                                        echo $listaErrores->verificarNombreReturnLi($nombre);
+                                        echo $listaErrores->verificarApellidoReturnLi($apellido);
+                                        echo $listaErrores->verificarTelefonoReturnLi($telefono);
+                                        echo $listaErrores->verificarEmailReturnLi($email);
+                                    ?>
                                 </div>
                             </ul>
                             <?php

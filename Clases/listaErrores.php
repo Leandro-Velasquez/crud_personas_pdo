@@ -1,10 +1,6 @@
 <?php
 
     class listaErrores extends Persona{
-        public function __construct()
-        {
-            
-        }
 
         //ESTAS FUNCIONES RETORNAN UN VALOR BOOLEANO
         public function verificarNombreReturnBool($nombre){
@@ -26,7 +22,16 @@
         }
 
         public function verificarEmailReturnBool($email){
-            if(!empty($email) && strpos($email, '@') !== false && strpos($email, '.com') !== false){
+            $arrayEmails = $this->getArrayEmailsDB();
+            $checkEmailOnDB = false;
+            for($i = 0; $i < count($arrayEmails); $i++){
+                foreach($arrayEmails[$i] as $key => $value){
+                    if($email == $value){
+                        $checkEmailOnDB = true;
+                    }
+                }
+            }
+            if(!empty($email) && strpos($email, '@') !== false && strpos($email, '.com') !== false && $checkEmailOnDB == false){
                 return true;
             }
             else{
@@ -71,8 +76,20 @@
         }
 
         public function verificarEmailReturnLi($email) {
+            $arrayEmails = $this->getArrayEmailsDB();
+            $checkEmailOnDB = false;
+            for($i = 0; $i < count($arrayEmails); $i++){
+                foreach($arrayEmails[$i] as $key => $value){
+                    if($email == $value){
+                        $checkEmailOnDB = true;
+                    }
+                }
+            }
             if(empty($email)){
                 return '<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>No deje el campo email vacio.</li>';
+            }
+            else if($checkEmailOnDB == true) {
+                return '<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>El email ya fue registrado, utilize otra direccion de email.</li>';
             }
             else if(strpos($email, '@') === false) {
                 return '<li class="lista-errores__li"><i class="fas fa-exclamation-triangle"></i>Ingrese una direccion de email valida, le falta el @</li>';

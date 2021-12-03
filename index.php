@@ -41,7 +41,7 @@
                         $telefono = $_POST["telefono"];
                         $email = $_POST["email"];
 
-                        $listaErrores = new listaErrores();
+                        $listaErrores = new listaErrores("localhost:3307", "personas_crud_pdo", "root", "");
 
                         //VERIFICAR QUE LOS DATOS NO ESTEN VACIOS
                         if($listaErrores->verificarNombreReturnBool($nombre) && $listaErrores->verificarNombreReturnBool($apellido) && $listaErrores->verificarTelefonoReturnBool($telefono) && $listaErrores->verificarEmailReturnBool($email)){

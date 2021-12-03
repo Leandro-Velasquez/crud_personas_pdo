@@ -44,7 +44,7 @@
                         $listaErrores = new listaErrores("localhost:3307", "personas_crud_pdo", "root", "");
 
                         //VERIFICAR QUE LOS DATOS NO ESTEN VACIOS
-                        if($listaErrores->verificarNombreReturnBool($nombre) && $listaErrores->verificarNombreReturnBool($apellido) && $listaErrores->verificarTelefonoReturnBool($telefono) && $listaErrores->verificarEmailReturnBool($email)){
+                        if($listaErrores->verificarNombreReturnBool($nombre) && $listaErrores->verificarNombreReturnBool($apellido) && $listaErrores->verificarTelefonoReturnBool($telefono) && isset($_POST["actualizar"])?true:$listaErrores->verificarEmailReturnBool($email)){
                             //ACTUALIZAR
                             if(isset($_POST["actualizar"])){
                                 $persona->editarDatosPersona($_POST["nombre"], $_POST["apellido"], $_POST["telefono"], $_POST["email"], $_POST["actualizar"]);
@@ -63,6 +63,10 @@
                             }
                         }
                         else{
+                            if(isset($_POST["actualizar"])){
+                                $titulo_formulario = "actualizar datos";
+                                $texto_boton = "actualizar";
+                            }
                             ?>
                             <ul class="lista-errores">
                                 <div class="lista-errores__div">
@@ -70,7 +74,7 @@
                                         echo $listaErrores->verificarNombreReturnLi($nombre);
                                         echo $listaErrores->verificarApellidoReturnLi($apellido);
                                         echo $listaErrores->verificarTelefonoReturnLi($telefono);
-                                        echo $listaErrores->verificarEmailReturnLi($email);
+                                        echo isset($_POST["actualizar"])?null:$listaErrores->verificarEmailReturnLi($email);
                                     ?>
                                 </div>
                             </ul>
@@ -90,9 +94,14 @@
                     <label class="formulario__label" for="email">Email:</label>
                     <input class="formulario__input" id="email" type="text" name="email" value=<?php if($datos!="")echo $datos['email']; else echo $email;?>>
 
-                    <button class="formulario__button" name=<?php echo $texto_boton; ?> value=<?php echo isset($_POST["botonEditar"])? $_POST["botonEditar"]: "valor_boton_editar_es_registrar"; ?>>
+                    <!-- <button class="formulario__button" name=<?php echo $texto_boton; ?> value=<?php echo isset($_POST["botonEditar"])? $_POST["botonEditar"]: "valor_boton_editar_es_registrar"; ?>>
+                        <?php echo $texto_boton; ?>
+                    </button> -->
+
+                    <button class="formulario__button" name=<?php echo $texto_boton; ?> value=<?php echo isset($_POST["botonEditar"]) || isset($_POST["actualizar"])? (isset($_POST["botonEditar"])?$_POST["botonEditar"]:$_POST["actualizar"]): "valor_boton_editar_es_registrar"; ?>>
                         <?php echo $texto_boton; ?>
                     </button>
+
                 </div>
             </form>
         </section>

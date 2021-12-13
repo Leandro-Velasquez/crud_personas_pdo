@@ -89,5 +89,11 @@
                 }
             }
         }
+
+        public function getCantidadRegistros(){
+            $sql = $this->pdo->query("SELECT COUNT(*) FROM personas");
+            $data = $sql->fetch(PDO::FETCH_ASSOC);
+            return $data["COUNT(*)"];
+        }
     }
 ?>

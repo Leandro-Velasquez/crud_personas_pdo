@@ -55,7 +55,7 @@
                     echo "</tr>";
                 }
             }else{
-                $pagina = 1;
+                $pagina = 0;
                 $indiceRegistros = $this->registrosPorPagina * $pagina;
                 $registros = $this->getRegistros($this->registrosPorPagina, $indiceRegistros);
 

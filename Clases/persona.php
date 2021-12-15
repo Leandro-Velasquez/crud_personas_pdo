@@ -1,5 +1,6 @@
 <?php
-    class Persona{
+
+class Persona{
         private $pdo;
 
         public function __construct($host, $dbname, $user, $password)
@@ -94,6 +95,18 @@
             $sql = $this->pdo->query("SELECT COUNT(*) FROM personas");
             $data = $sql->fetch(PDO::FETCH_ASSOC);
             return $data["COUNT(*)"];
+        }
+
+        public function getRegistros($cantidadRegistros, $desde){
+            $sql = $this->pdo->prepare("SELECT * FROM personas LIMIT :c OFFSET :d");
+
+            $sql->bindParam(":c", $cantidadRegistros, PDO::PARAM_INT);
+            $sql->bindParam(":d", $desde, PDO::PARAM_INT);
+
+            $sql->execute();
+
+            $registros = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $registros;
         }
     }
 ?>

@@ -107,3 +107,29 @@
     margin-right: 8px;
 }
 
+
+
+/*ESTILOS CLASE PAGINAS*/
+.container-botones{
+    display: flex;
+    justify-content: center;
+}
+.paginas {
+    list-style-type: none;
+    display: flex;
+}
+.paginas__boton {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    text-decoration: none;
+    background-color: #678983;
+    border: 1px solid #395853;
+    color: white;
+}
+.paginas__boton:hover {
+    background-color: #456861;
+    transition: .4s;
+}

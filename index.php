@@ -1,6 +1,7 @@
 <?php
     require_once "Clases/persona.php";
     require_once "Clases/listaErrores.php";
+    require_once "Clases/paginas.php";
 
     $persona = new Persona("localhost:3307", "personas_crud_pdo", "root", "");
 
@@ -17,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro personas</title>
-    <link rel="stylesheet" href="styles.css?2">
+    <link rel="stylesheet" href="styles.css?3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 </head>
 <body>
@@ -116,10 +117,18 @@
                 </thead>
                 <tbody class="table__tbody">
                     <?php
-                        $persona->mostrarDatos();
+                        $paginas = new Paginas(3);
+                        
+                        $paginas->mostrarRegistros();
+                        //$persona->mostrarDatos();
                     ?>
                 </tbody>
             </table>
+            <div class="container-botones">
+                <?php
+                $paginas->botones();
+                ?>
+            </div>
         </section>
     </div>
     <script src="scripts.js"></script>

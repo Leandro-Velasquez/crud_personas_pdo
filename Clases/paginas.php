@@ -54,6 +54,33 @@
                     <?php
                     echo "</tr>";
                 }
+            }else{
+                $pagina = 1;
+                $indiceRegistros = $this->registrosPorPagina * $pagina;
+                $registros = $this->getRegistros($this->registrosPorPagina, $indiceRegistros);
+
+
+                for($i = 0; $i < count($registros); $i++){
+                    $id = "";
+                    echo "<tr>";
+                    foreach($registros[$i] as $key => $value){
+                        if($key == "id"){
+                            $id = $value;
+                        }
+                        if($key != "id"){
+                            echo "<td>" . $value . "</td>";
+                        }
+                    }
+                    ?>
+                    <td class="table__container-buttons">
+                        <form method="POST">
+                            <button class="table__button" name="botonEditar" value=<?php echo $id; ?>>Editar</button>
+                            <button class="table__button" name="id" value=<?php echo $id; ?>>Eliminar</button>
+                        </form>
+                    </td>
+                    <?php
+                    echo "</tr>";
+                }
             }
         }
     }

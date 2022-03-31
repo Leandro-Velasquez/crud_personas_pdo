@@ -1,0 +1,23 @@
+{
+  "name": "crud_personas_pdo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leandro-Velasquez/crud_personas_pdo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leandro-Velasquez/crud_personas_pdo/issues"
+  },
+  "homepage": "https://github.com/Leandro-Velasquez/crud_personas_pdo#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
+  }
+}

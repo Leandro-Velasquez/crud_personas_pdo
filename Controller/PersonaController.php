@@ -32,9 +32,10 @@ class PersonaController extends Controller
         return $this->view('crud/update');
     }
 
-    public function show()
+    public function show($params_array)
     {
-
+        $persona = (new Persona)->getRegistroId($params_array['0']);
+        return $this->view('crud/show', compact('persona'));
     }
 
     public function destroy()

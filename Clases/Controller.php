@@ -14,7 +14,7 @@ class Controller
 
     public function content($view, $params_array = null)
     {
-        extract($params_array);
+        !empty($params_array)?extract($params_array):null;
         require "./View/" . $view . ".php";
     }
 }

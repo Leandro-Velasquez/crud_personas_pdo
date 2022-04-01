@@ -23,6 +23,11 @@ class Model {
         return $resultados;
     }
 
+    public function save()
+    {
+        $columnas = get_object_vars($this);
+    }
+
     public function connect()
     {
         return $this->pdo;

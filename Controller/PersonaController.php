@@ -1,11 +1,13 @@
 <?php
 require "./Clases/Controller.php";
+require "./Model/Persona.php";
 
 class PersonaController extends Controller
 {
     public function index()
     {
-        return $this->view('crud/index');
+        $personas = (new Persona)->all();
+        return $this->view('crud/index', compact("personas"));
     }
 
     public function create()
@@ -15,7 +17,14 @@ class PersonaController extends Controller
 
     public function store()
     {
-
+        $registro = new Persona;
+        $registro->nombre = $_POST['nombre'];
+        $registro->apellido = $_POST['apellido'];
+        $registro->telefono = $_POST['telefono'];
+        $registro->email = $_POST['email'];
+        echo "<pre>";
+        var_dump($registro);
+        echo "</pre>";
     }
 
     public function update()

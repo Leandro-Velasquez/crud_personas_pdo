@@ -22,9 +22,9 @@ class PersonaController extends Controller
         $registro->apellido = $_POST['apellido'];
         $registro->telefono = $_POST['telefono'];
         $registro->email = $_POST['email'];
-        echo "<pre>";
-        var_dump($registro);
-        echo "</pre>";
+        $registro->save();
+        header("Location:" . URL_SITE . "Persona/index");
+        die();
     }
 
     public function update()

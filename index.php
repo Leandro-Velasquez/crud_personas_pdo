@@ -1,4 +1,5 @@
 <?php
+/*
     require_once "Clases/persona.php";
     require_once "Clases/listaErrores.php";
     require_once "Clases/paginas.php";
@@ -9,8 +10,9 @@
         $persona->eliminarPersonaRegistro($_POST['id']);
         header("location: index.php");
     }
-    
+*/
 ?>
+<?php /*
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -134,3 +136,10 @@
     <script src="scripts.js"></script>
 </body>
 </html>
+*/
+
+require "Clases/App.php";
+require "config.php";
+
+$app = new App();
+?>

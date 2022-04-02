@@ -29,7 +29,14 @@ class PersonaController extends Controller
 
     public function update()
     {
-        return $this->view('crud/update');
+        $persona = (new Persona)->getRegistroId($_POST['id']);
+        $persona->nombre = $_POST['nombre'];
+        $persona->apellido = $_POST['apellido'];
+        $persona->telefono = $_POST['telefono'];
+        $persona->email = $_POST['email'];
+        $persona->update();
+        header("Location:" . URL_SITE . "Persona/index");
+        die();
     }
 
     public function show($params_array)

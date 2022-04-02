@@ -23,6 +23,14 @@ class Model {
         return $resultados;
     }
 
+    public function getRegistroId(int $id)
+    {
+        $objectPdo = $this->pdo->prepare('SELECT * FROM ' . $this->table . ' WHERE id=:id');
+        $objectPdo->bindParam(':id', $id, PDO::PARAM_INT);
+        $objectPdo->execute();
+        return $objectPdo->fetch(PDO::FETCH_OBJ);
+    }
+
     public function connect()
     {
         return $this->pdo;

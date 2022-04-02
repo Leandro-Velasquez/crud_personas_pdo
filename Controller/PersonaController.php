@@ -45,9 +45,12 @@ class PersonaController extends Controller
         return $this->view('crud/show', compact('persona'));
     }
 
-    public function destroy()
+    public function destroy($params_array)
     {
-
+        $persona = (new Persona)->getRegistroId($params_array['0']);
+        $persona->delete();
+        header("Location:" . URL_SITE . "Persona/index");
+        die();
     }
 
     public function edit()

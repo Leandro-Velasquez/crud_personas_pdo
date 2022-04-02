@@ -28,7 +28,19 @@ class Model {
         $objectPdo = $this->pdo->prepare('SELECT * FROM ' . $this->table . ' WHERE id=:id');
         $objectPdo->bindParam(':id', $id, PDO::PARAM_INT);
         $objectPdo->execute();
-        return $objectPdo->fetch(PDO::FETCH_OBJ);
+        $objectPdo->setFetchMode(PDO::FETCH_CLASS, get_class($this));
+        return $objectPdo->fetch();
+    }
+
+    public function update()
+    {
+        $gsent = $this->connect()->prepare("UPDATE $this->table SET nombre=:nombre, apellido=:apellido, telefono=:telefono, email=:email WHERE id=:id");
+        $gsent->bindParam(':nombre', $this->nombre, PDO::PARAM_STR, 60);
+        $gsent->bindParam(':apellido', $this->apellido, PDO::PARAM_STR, 60);
+        $gsent->bindParam(':telefono', $this->telefono, PDO::PARAM_STR, 45);
+        $gsent->bindParam(':email', $this->email, PDO::PARAM_STR, 255);
+        $gsent->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $gsent->execute();
     }
 
     public function connect()

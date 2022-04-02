@@ -23,4 +23,22 @@ class Persona extends Model
         $gsent->bindParam(':email', $this->email, PDO::PARAM_STR, 255);
         $gsent->execute();
     }
+
+    public function update()
+    {
+        $gsent = $this->connect()->prepare("UPDATE $this->table SET nombre=:nombre, apellido=:apellido, telefono=:telefono, email=:email WHERE id=:id");
+        $gsent->bindParam(':nombre', $this->nombre, PDO::PARAM_STR, 60);
+        $gsent->bindParam(':apellido', $this->apellido, PDO::PARAM_STR, 60);
+        $gsent->bindParam(':telefono', $this->telefono, PDO::PARAM_STR, 45);
+        $gsent->bindParam(':email', $this->email, PDO::PARAM_STR, 255);
+        $gsent->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $gsent->execute();
+    }
+
+    public function delete()
+    {
+        $gsent = $this->connect()->prepare("DELETE FROM " . $this->table . " WHERE id=:id");
+        $gsent->bindParam(':id', $this->id);
+        $gsent->execute();
+    }
 }

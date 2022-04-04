@@ -5,7 +5,8 @@ class App
     {
         if(isset($_GET['url']))
         {
-            $url = $_GET['url'];
+            if(substr($_GET['url'], -1) == '/') $url = substr($_GET['url'], 0, -1);
+            else $url = $_GET['url'];
             $url = explode('/', $url);
 
             $controller = array_shift($url) . 'Controller';
@@ -42,9 +43,9 @@ class App
         }
         else
         {
-            require "./Clases/Controller.php";
+            require "./Controller/PersonaController.php";
 
-            $obj = new Controller;
+            $obj = new PersonaController;
             $obj->index();
         }
     }

@@ -14,7 +14,7 @@
             </thead>
             <tbody class="bg-neutral-100">
                 <?php
-                foreach($personas as $persona)
+                foreach($personas->registros as $persona)
                 {
                 ?>
                     <tr>
@@ -36,7 +36,8 @@
         </table>
         
     </div>
-    <div class="bg-inherit text-right text-sky-500 py-2">
+    <div class="flex justify-between bg-inherit text-right text-sky-500 py-2">
+        <?php $personas->links(); ?>
         <a href="<?php echo URL_SITE . 'Persona/create'; ?>">Create</a>
     </div>
 </div>

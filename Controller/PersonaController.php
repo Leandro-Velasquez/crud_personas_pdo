@@ -6,7 +6,7 @@ class PersonaController extends Controller
 {
     public function index()
     {
-        $personas = (new Persona)->all();
+        $personas = (new Persona)->paginate();
         return $this->view('crud/index', compact("personas"));
     }
 
